@@ -1,4 +1,4 @@
-AM_CFLAGS=-O3
+AM_CFLAGS=-O0
 
 VPATH = src include
 TARGET = console-rpg
@@ -10,11 +10,11 @@ all : $(TARGET)
 	echo All done
 
 $(TARGET) : $(OBJS)
-	gcc -o $@ $^
+	gcc $(AM_CFLAGS) -o $@ $^ -lm
 
 %.o : %.c
-	gcc -o $@ -c $^
+	gcc $(AM_CFLAGS) -o $@ -c $^
 
 clean :
-	rm $(TARGET) $(OBJS)
+	rm -f $(TARGET) $(OBJS)
 	echo Clean done

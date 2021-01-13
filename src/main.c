@@ -1,13 +1,21 @@
 #include <stdio.h>	// Для printf / sprintf
+#include <math.h>	// Для ceil
 
 typedef struct {
 	char* name; // имя атрибута
 	double value; // значение атрибута
 } Attribute;
 
+// Округляет значение характеристики персонажа вверх
+// Например, не хочу видеть игроков со здоровьем 80.356, пусть будет 81
+int normalizeAttribute(double value) {
+	return (int)ceil(value);
+}
+
 // выводим информацию об характеристики персонажа на экран
 void testPrintAttribute(Attribute* attribute) {
-	printf("%s: %f\n", attribute->name, attribute->value);
+	int value = normalizeAttribute(attribute->value);
+	printf("%s: %d\n", attribute->name, value);
 }
 
 // тестирует функционал вывода характеристик персонажа на экран
